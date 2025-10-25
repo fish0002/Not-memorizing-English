@@ -1,0 +1,28 @@
+<view class="container">
+  <view class="time-picker">
+    <picker mode="time" value="{{time}}" bindchange="onTimeChange">
+      <view class="time-display">
+        <text class="time-text">{{time}}</text>
+        <text class="time-label">点击修改时间</text>
+      </view>
+    </picker>
+  </view>
+
+  <view class="repeat-section">
+    <view class="section-title">重复</view>
+    <view class="repeat-list">
+      <view class="repeat-item {{item.selected ? 'selected' : ''}}" 
+            wx:for="{{days}}" 
+            wx:key="index"
+            bindtap="toggleDay"
+            data-index="{{index}}">
+        {{item.name}}
+      </view>
+    </view>
+  </view>
+
+  <view class="button-area">
+    <button class="save-btn" type="primary" bindtap="saveReminder">保存</button>
+    <button class="cancel-btn" bindtap="cancelReminder">取消提醒</button>
+  </view>
+</view> 

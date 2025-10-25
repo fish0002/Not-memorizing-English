@@ -1,0 +1,32 @@
+<!--index.wxml-->
+<scroll-view class="scrollarea" scroll-y type="list">
+  <view class="container">
+    <view class="logo-area">
+      <view class="logo-box">
+        <text class="logo-text">📚</text>
+      </view>
+      <text class="app-name">不背English</text>
+    </view>
+
+    <view class="menu-list">
+      <view class="menu-item" bindtap="goToStudy">
+        <text class="menu-icon">📖</text>
+        <text class="menu-text">开始背单词</text>
+      </view>
+
+      <view class="menu-item" bindtap="goToHistory">
+        <text class="menu-icon">📊</text>
+        <text class="menu-text">历史记录</text>
+      </view>
+
+      <view class="menu-item" bindtap="goToUser">
+        <text class="menu-icon">👤</text>
+        <text class="menu-text">个人中心</text>
+      </view>
+    </view>
+
+    <view class="footer">
+      <text class="slogan">每天进步一点点</text>
+    </view>
+  </view>
+</scroll-view>

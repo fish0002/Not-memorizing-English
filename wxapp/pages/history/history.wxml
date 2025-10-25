@@ -1,0 +1,94 @@
+<view class="container">
+  <!-- 统计卡片 -->
+  <view class="stats-card">
+    <view class="stat-item">
+      <text class="stat-num">{{stats.totalWords}}</text>
+      <text class="stat-label">已学单词</text>
+    </view>
+    <view class="stat-item">
+      <text class="stat-num">{{stats.todayWords}}</text>
+      <text class="stat-label">今日新词</text>
+    </view>
+    <view class="stat-item">
+      <text class="stat-num">{{stats.accuracy}}</text>
+      <text class="stat-label">正确率</text>
+    </view>
+    <view class="stat-item">
+      <text class="stat-num">{{stats.streak}}</text>
+      <text class="stat-label">连续天数</text>
+    </view>
+  </view>
+
+  <!-- 标签页切换 -->
+  <view class="tabs">
+    <view class="tab {{activeTab === 0 ? 'active' : ''}}" 
+          bindtap="handleTabChange" 
+          data-tab="0">
+      已掌握 ({{masteredWords.length}})
+    </view>
+    <view class="tab {{activeTab === 1 ? 'active' : ''}}" 
+          bindtap="handleTabChange" 
+          data-tab="1">
+      待复习 ({{reviewWords.length}})
+    </view>
+  </view>
+
+  <!-- 单词列表 -->
+  <view class="word-list">
+    <block wx:if="{{activeTab === 0}}">
+      <!-- 已掌握的单词 -->
+      <block wx:for="{{dateList}}" wx:key="date">
+        <block wx:for="{{wordsByDate[item]}}" wx:for-item="word" wx:for-index="wordIndex" wx:key="word">
+          <view class="word-item" wx:if="{{word.mastered}}">
+            <view class="word-header">
+              <view class="word-main">
+                <text class="word-text">{{word.word}}</text>
+                <text class="word-phonetic">{{word.phonetic}}</text>
+              </view>
+              <view class="word-actions">
+                <image class="action-icon" src="/images/sound.png" bindtap="handlePlaySound" data-word="{{word.word}}"/>
+                <image class="action-icon" src="/images/note.png" bindtap="handleEditNote" data-date="{{item}}" data-index="{{wordIndex}}"/>
+              </view>
+            </view>
+            <view class="word-meaning">{{word.meaning}}</view>
+            <view class="word-note" wx:if="{{word.note}}">笔记：{{word.note}}</view>
+            <view class="word-footer">
+              <text class="review-count">已复习{{word.reviewCount}}次</text>
+              <text class="review-date">{{word.lastReview}}</text>
+            </view>
+          </view>
+        </block>
+      </block>
+    </block>
+
+    <block wx:else>
+      <!-- 待复习的单词 -->
+      <block wx:for="{{dateList}}" wx:key="date">
+        <block wx:for="{{wordsByDate[item]}}" wx:for-item="word" wx:for-index="wordIndex" wx:key="word">
+          <view class="word-item" wx:if="{{!word.mastered}}">
+            <view class="word-header">
+              <view class="word-main">
+                <text class="word-text">{{word.word}}</text>
+                <text class="word-phonetic">{{word.phonetic}}</text>
+              </view>
+              <view class="word-actions">
+                <image class="action-icon" src="/images/sound.png" bindtap="handlePlaySound" data-word="{{word.word}}"/>
+                <image class="action-icon" src="/images/note.png" bindtap="handleEditNote" data-date="{{item}}" data-index="{{wordIndex}}"/>
+                <image class="action-icon" src="/images/review.png" bindtap="handleAddToReview" data-word="{{word}}"/>
+              </view>
+            </view>
+            <view class="word-meaning">{{word.meaning}}</view>
+            <view class="word-note" wx:if="{{word.note}}">笔记：{{word.note}}</view>
+            <view class="word-footer">
+              <text class="review-count">已复习{{word.reviewCount}}次</text>
+              <text class="review-date">{{word.lastReview}}</text>
+              <button class="mastered-btn" bindtap="handleToggleMastered" data-date="{{item}}" data-index="{{wordIndex}}">
+                标记为已掌握
+              </button>
+            </view>
+          </view>
+        </block>
+      </block>
+    </block>
+  </view>
+</view> 

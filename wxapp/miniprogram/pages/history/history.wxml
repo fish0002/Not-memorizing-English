@@ -1,0 +1,34 @@
+<view class="container">
+  <view class="stats-card">
+    <view class="stat-item">
+      <text class="stat-num">328</text>
+      <text class="stat-label">已学单词</text>
+    </view>
+    <view class="stat-item">
+      <text class="stat-num">12</text>
+      <text class="stat-label">今日新词</text>
+    </view>
+    <view class="stat-item">
+      <text class="stat-num">85%</text>
+      <text class="stat-label">正确率</text>
+    </view>
+  </view>
+
+  <view class="word-list">
+    <view class="word-item">
+      <view class="word-info">
+        <text class="word-text">Hello</text>
+        <text class="word-phonetic">/həˈləʊ/</text>
+      </view>
+      <text class="review-date">2024-03-20</text>
+    </view>
+    
+    <view class="word-item">
+      <view class="word-info">
+        <text class="word-text">World</text>
+        <text class="word-phonetic">/wɜːld/</text>
+      </view>
+      <text class="review-date">2024-03-20</text>
+    </view>
+  </view>
+</view> 

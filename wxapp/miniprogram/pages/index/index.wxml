@@ -1,0 +1,19 @@
+<view class="container">
+  <view class="word-card">
+    <view class="word">{{currentWord.word}}</view>
+    <view class="phonetic">{{currentWord.phonetic}}</view>
+    <view class="meaning">{{currentWord.meaning}}</view>
+  </view>
+  
+  <view class="operation-area">
+    <view class="btn-group">
+      <button class="btn wrong" bindtap="handleUnknown">不认识</button>
+      <button class="btn correct" bindtap="handleKnown">认识</button>
+    </view>
+    
+    <view class="progress-bar">
+      <text class="progress-text">今日进度：{{progress.current}}/{{progress.total}}</text>
+      <progress percent="{{progress.percent}}" stroke-width="3" color="#3963bc"/>
+    </view>
+  </view>
+</view> 

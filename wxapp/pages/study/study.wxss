@@ -1,0 +1,345 @@
+page {
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+.scrollarea {
+  flex: 1;
+  overflow-y: hidden;
+}
+
+.container {
+  padding: 20rpx;
+  background-color: #f5f5f5;
+  min-height: 100vh;
+}
+
+.word-card {
+  margin: 20rpx 0;
+  padding: 30rpx;
+  background: #fff;
+  border-radius: 15rpx;
+  box-shadow: 0 4rpx 20rpx rgba(0,0,0,0.1);
+}
+
+.word-main {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  margin-bottom: 30rpx;
+}
+
+.word-text {
+  font-size: 60rpx;
+  font-weight: bold;
+  color: #333;
+  margin-bottom: 10rpx;
+}
+
+.phonetic {
+  font-size: 32rpx;
+  color: #666;
+  margin-bottom: 10rpx;
+}
+
+.sound-icon {
+  font-size: 40rpx;
+  color: #07c160;
+  cursor: pointer;
+}
+
+.translation-area {
+  margin: 20rpx 0;
+  padding: 20rpx;
+  border-top: 1rpx solid #eee;
+}
+
+.trans-item {
+  margin: 10rpx 0;
+}
+
+.pos {
+  color: #07c160;
+  font-weight: bold;
+  margin-right: 10rpx;
+}
+
+.meaning {
+  color: #333;
+}
+
+.examples-area {
+  margin: 20rpx 0;
+  padding: 20rpx;
+  border-top: 1rpx solid #eee;
+}
+
+.example-item {
+  margin: 20rpx 0;
+}
+
+.en-text {
+  color: #333;
+  font-size: 28rpx;
+  margin-bottom: 10rpx;
+  display: block;
+}
+
+.zh-text {
+  color: #666;
+  font-size: 26rpx;
+  display: block;
+}
+
+.analysis-area {
+  margin: 20rpx 0;
+  padding: 20rpx;
+  border-top: 1rpx solid #eee;
+}
+
+.roots, .mnemonics, .usage {
+  margin: 15rpx 0;
+}
+
+.title {
+  color: #07c160;
+  font-weight: bold;
+  font-size: 28rpx;
+  margin-right: 10rpx;
+}
+
+.content {
+  color: #333;
+  font-size: 26rpx;
+}
+
+.button-group {
+  margin: 30rpx 0;
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+.btn {
+  margin: 10rpx;
+  padding: 15rpx 30rpx;
+  border-radius: 30rpx;
+  font-size: 28rpx;
+  background: #f8f8f8;
+  color: #333;
+  border: none;
+  box-shadow: 0 2rpx 10rpx rgba(0,0,0,0.1);
+}
+
+.btn.show-trans,
+.btn.show-example,
+.btn.show-analysis {
+  background: #e8f7f1;
+  color: #07c160;
+}
+
+.control-buttons {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 30rpx;
+}
+
+.btn.unknown {
+  background: #ffeaea;
+  color: #ff4d4f;
+  width: 45%;
+}
+
+.btn.known {
+  background: #e8f7f1;
+  color: #07c160;
+  width: 45%;
+}
+
+.spelling-mode {
+  margin: 20rpx 0;
+  padding: 30rpx;
+  background: #fff;
+  border-radius: 15rpx;
+  box-shadow: 0 4rpx 20rpx rgba(0,0,0,0.1);
+}
+
+.spelling-input {
+  width: 100%;
+  height: 80rpx;
+  border: 2rpx solid #eee;
+  border-radius: 10rpx;
+  padding: 0 20rpx;
+  margin: 20rpx 0;
+  font-size: 32rpx;
+}
+
+.spelling-result {
+  text-align: center;
+  margin: 20rpx 0;
+  padding: 20rpx;
+  border-radius: 10rpx;
+  font-size: 28rpx;
+}
+
+.nav-buttons {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 30rpx;
+  padding: 20rpx;
+  background: #fff;
+  border-radius: 10rpx;
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  box-shadow: 0 -2rpx 10rpx rgba(0,0,0,0.1);
+}
+
+.nav-buttons .btn {
+  width: 30%;
+  margin: 0;
+}
+
+.btn.review {
+  background: #f0f7ff;
+  color: #1890ff;
+}
+
+.progress-bar {
+  margin: 20rpx 0 0 0;
+  padding: 15rpx 15rpx 5rpx 15rpx;
+  background: #fff;
+  border-radius: 10rpx 10rpx 0 0;
+  box-shadow: 0 2rpx 10rpx rgba(0,0,0,0.1);
+}
+
+.progress-text {
+  margin-top: 8rpx;
+  margin-bottom: 5rpx;
+  font-size: 24rpx;
+  color: #666;
+  text-align: center;
+}
+
+.level-info {
+  margin: 0 0 20rpx 0;
+  padding: 5rpx 15rpx 15rpx 15rpx;
+  background: #fff;
+  border-radius: 0 0 10rpx 10rpx;
+  text-align: center;
+  box-shadow: 0 2rpx 10rpx rgba(0,0,0,0.1);
+}
+
+.level-text {
+  font-size: 28rpx;
+  color: #333;
+  font-weight: bold;
+}
+
+.mode-indicator {
+  background: #3963bc;
+  color: #fff;
+  padding: 20rpx;
+  border-radius: 10rpx;
+  margin-bottom: 30rpx;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.mode-text {
+  font-size: 32rpx;
+  font-weight: bold;
+}
+
+.review-progress {
+  font-size: 28rpx;
+}
+
+.review-btn-area {
+  margin-top: 30rpx;
+}
+
+.review-btn {
+  background: #3963bc;
+  color: #fff;
+  border-radius: 40rpx;
+  position: relative;
+  padding: 0 60rpx;
+}
+
+.unknown-count {
+  position: absolute;
+  top: -10rpx;
+  right: -10rpx;
+  background: #ff4d4f;
+  color: #fff;
+  font-size: 24rpx;
+  min-width: 40rpx;
+  height: 40rpx;
+  border-radius: 20rpx;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0 10rpx;
+}
+
+.spelling-card {
+  background: #fff;
+  border-radius: 20rpx;
+  padding: 40rpx;
+  box-shadow: 0 2rpx 20rpx rgba(0, 0, 0, 0.1);
+}
+
+.spelling-progress {
+  text-align: center;
+  font-size: 28rpx;
+  color: #666;
+  margin-bottom: 30rpx;
+}
+
+.spelling-input-area {
+  margin: 40rpx 0;
+  display: flex;
+  align-items: center;
+  gap: 20rpx;
+}
+
+.spelling-btn {
+  width: 160rpx !important;
+  height: 80rpx;
+  line-height: 80rpx;
+  background: #3963bc;
+  color: #fff;
+  border-radius: 40rpx;
+  font-size: 32rpx;
+  padding: 0;
+}
+
+.spelling-result.correct {
+  background: #f6ffed;
+  color: #52c41a;
+  border: 1rpx solid #b7eb8f;
+}
+
+.spelling-result.wrong {
+  background: #fff2f0;
+  color: #ff4d4f;
+  border: 1rpx solid #ffccc7;
+}
+
+.level-picker {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 10rpx 0;
+}
+
+.picker-arrow {
+  font-size: 24rpx;
+  color: #666;
+  margin-left: 10rpx;
+} 

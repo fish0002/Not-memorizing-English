@@ -1,0 +1,83 @@
+.container {
+  padding: 30rpx;
+  background: #f5f5f5;
+  min-height: 100vh;
+}
+
+.time-picker {
+  background: #fff;
+  border-radius: 20rpx;
+  padding: 40rpx;
+  margin-bottom: 30rpx;
+}
+
+.time-display {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.time-text {
+  font-size: 60rpx;
+  font-weight: bold;
+  color: #333;
+  margin-bottom: 20rpx;
+}
+
+.time-label {
+  font-size: 28rpx;
+  color: #999;
+}
+
+.repeat-section {
+  background: #fff;
+  border-radius: 20rpx;
+  padding: 30rpx;
+  margin-bottom: 30rpx;
+}
+
+.section-title {
+  font-size: 32rpx;
+  color: #333;
+  margin-bottom: 20rpx;
+  padding-left: 20rpx;
+}
+
+.repeat-list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20rpx;
+  padding: 0 20rpx;
+}
+
+.repeat-item {
+  width: 80rpx;
+  height: 80rpx;
+  border-radius: 40rpx;
+  background: #f0f2f5;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 28rpx;
+  color: #666;
+}
+
+.repeat-item.selected {
+  background: #3963bc;
+  color: #fff;
+}
+
+.button-area {
+  padding: 40rpx 0;
+}
+
+.save-btn {
+  background: #3963bc !important;
+  color: #fff !important;
+  margin-bottom: 30rpx;
+}
+
+.cancel-btn {
+  background: #f5f5f5 !important;
+  color: #666 !important;
+} 

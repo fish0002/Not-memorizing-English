@@ -1,0 +1,127 @@
+<scroll-view class="scrollarea" scroll-y type="list">
+  <view class="container">
+    <!-- 顶部进度条 -->
+    <view class="progress-bar">
+      <progress percent="{{progress.percent}}" stroke-width="3" color="#07c160" />
+      <view class="progress-text">今日进度：{{progress.current}}/{{progress.total}}</view>
+    </view>
+
+    <!-- 当前级别选择 -->
+    <view class="level-info">
+      <picker bindchange="handleLevelChange" value="{{levelIndex}}" range="{{levelList}}">
+        <view class="level-picker">
+          <text class="level-text">当前级别：{{currentLevel}}</text>
+          <text class="picker-arrow">▼</text>
+        </view>
+      </picker>
+    </view>
+
+    <!-- 单词展示区域 -->
+    <view class="word-card">
+      <!-- 单词本体 -->
+      <view class="word-main">
+        <text class="word-text">{{currentWord.word}}</text>
+        <text class="phonetic">{{currentWord.phonetic}}</text>
+        <view class="sound-icon" bindtap="playPronunciation">🔊</view>
+      </view>
+
+      <!-- 翻译区域 -->
+      <view class="translation-area" wx:if="{{showTranslation}}">
+        <block wx:for="{{currentWord.translations}}" wx:key="pos">
+          <view class="trans-item">
+            <text class="pos">{{item.pos}}.</text>
+            <text class="meaning">{{item.meaning}}</text>
+          </view>
+        </block>
+      </view>
+
+      <!-- 例句区域 -->
+      <view class="examples-area" wx:if="{{showExamples}}">
+        <block wx:for="{{currentWord.translations[0].examples}}" wx:key="en">
+          <view class="example-item">
+            <text class="en-text">{{item.en}}</text>
+            <text class="zh-text">{{item.zh}}</text>
+          </view>
+        </block>
+      </view>
+
+      <!-- 词根分析区域 -->
+      <view class="analysis-area" wx:if="{{showAnalysis}}">
+        <view class="roots" wx:if="{{currentWord.roots}}">
+          <text class="title">词根分析：</text>
+          <text class="content">{{currentWord.roots.explanation}}</text>
+        </view>
+        <view class="mnemonics" wx:if="{{currentWord.mnemonics}}">
+          <text class="title">记忆技巧：</text>
+          <text class="content">{{currentWord.mnemonics}}</text>
+        </view>
+        <view class="usage" wx:if="{{currentWord.usageNote}}">
+          <text class="title">用法说明：</text>
+          <text class="content">{{currentWord.usageNote}}</text>
+        </view>
+      </view>
+
+      <!-- 操作按钮区域 -->
+      <view class="button-group">
+        <button class="btn show-trans" bindtap="showTranslation" wx:if="{{!showTranslation}}">
+          显示释义
+        </button>
+        <button class="btn show-example" bindtap="showExamples" wx:if="{{showTranslation && !showExamples}}">
+          显示例句
+        </button>
+        <button class="btn show-analysis" bindtap="showAnalysis" wx:if="{{showExamples && !showAnalysis}}">
+          词根分析
+        </button>
+      </view>
+
+      <!-- 认识/不认识按钮 -->
+      <view class="word-actions">
+        <button class="btn known" bindtap="handleKnown">认识</button>
+        <button class="btn unknown" bindtap="handleUnknown">不认识</button>
+      </view>
+    </view>
+
+    <!-- 拼写检验模式 -->
+    <view class="spelling-mode" wx:if="{{isSpellingMode}}">
+      <view class="spelling-word">
+        <text class="meaning">{{spellingWords[spellingIndex].translations[0].meaning}}</text>
+      </view>
+      <input class="spelling-input" 
+             type="text" 
+             placeholder="请输入单词拼写" 
+             value="{{spellingInput}}"
+             bindinput="handleSpellingInput"/>
+      <button class="btn check-spelling" bindtap="checkSpelling">检查拼写</button>
+      <view class="spelling-result" wx:if="{{spellingResult}}">
+        {{spellingResult}}
+      </view>
+    </view>
+
+    <!-- 普通学习模式 -->
+    <view wx:else>
+      <view class="mode-indicator" wx:if="{{isReviewMode}}">
+        <text class="mode-text">复习模式</text>
+        <text class="review-progress">{{reviewIndex}}/{{unknownWords.length}}</text>
+      </view>
+
+      <view class="review-btn-area">
+        <button class="review-btn" bindtap="toggleReviewMode">
+          {{isReviewMode ? '退出复习' : '复习生词'}}
+          <text class="unknown-count" wx:if="{{!isReviewMode && unknownWords.length > 0}}">{{unknownWords.length}}</text>
+        </button>
+      </view>
+    </view>
+
+    <!-- 底部导航 -->
+    <view class="nav-buttons">
+      <button class="btn prev" bindtap="handlePrevWord">上一个</button>
+      <button class="btn review" bindtap="toggleReviewMode">
+        {{isReviewMode ? '退出复习' : '复习生词'}}
+        <text class="unknown-count" wx:if="{{!isReviewMode && unknownWords.length > 0}}">
+          {{unknownWords.length}}
+        </text>
+      </button>
+      <button class="btn next" bindtap="handleNextWord">下一个</button>
+    </view>
+  </view>
+</scroll-view> 

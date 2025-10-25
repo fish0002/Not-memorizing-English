@@ -1,0 +1,122 @@
+<view class="container">
+  <!-- 用户信息区域 -->
+  <view class="user-card">
+    <view class="user-info">
+      <button wx:if="{{!userInfo.avatarUrl}}" 
+              class="avatar-wrapper" 
+              open-type="chooseAvatar" 
+              bind:chooseavatar="onChooseAvatar">
+        <image class="avatar" src="{{userInfo.avatarUrl || '/images/default-avatar.png'}}" mode="aspectFill"></image>
+      </button>
+      <image wx:else class="avatar" src="{{userInfo.avatarUrl}}" mode="aspectFill"></image>
+      
+      <view class="info-right">
+        <input wx:if="{{!userInfo.nickName}}" 
+               type="nickname" 
+               class="nickname-input" 
+               placeholder="点击设置昵称"
+               bindchange="onGetNickname" />
+        <text wx:else class="nickname">{{userInfo.nickName}}</text>
+        <text class="level-tag">Lv.{{learningStats.level}}</text>
+      </view>
+    </view>
+
+    <view class="exp-bar" wx:if="{{isLoggedIn}}">
+      <progress class="level-progress" 
+                percent="{{learningStats.experience/learningStats.nextLevel*100}}" 
+                stroke-width="3" 
+                activeColor="#4CAF50"
+                backgroundColor="#E8F5E9"/>
+      <text class="exp-text">{{learningStats.experience}}/{{learningStats.nextLevel}}</text>
+    </view>
+  </view>
+
+  <!-- 学习数据卡片 -->
+  <view class="stats-section" wx:if="{{isLoggedIn}}">
+    <view class="stats-grid">
+      <view class="stat-item">
+        <view class="stat-icon">📚</view>
+        <text class="stat-num">{{learningStats.totalWords}}</text>
+        <text class="stat-label">词汇量</text>
+      </view>
+      <view class="stat-item">
+        <view class="stat-icon">🔥</view>
+        <text class="stat-num">{{learningStats.streak}}</text>
+        <text class="stat-label">连续打卡</text>
+      </view>
+      <view class="stat-item">
+        <view class="stat-icon">📅</view>
+        <text class="stat-num">{{learningStats.totalDays}}</text>
+        <text class="stat-label">学习天数</text>
+      </view>
+      <view class="stat-item">
+        <view class="stat-icon">⏱️</view>
+        <text class="stat-num">{{learningStats.todayMinutes}}</text>
+        <text class="stat-label">今日学习</text>
+      </view>
+    </view>
+  </view>
+
+  <!-- 设置菜单 -->
+  <view class="menu-card">
+    <view class="menu-group">
+      <view class="menu-title">学习设置</view>
+      <view class="menu-item" bindtap="handleSetDailyGoal">
+        <view class="menu-left">
+          <view class="menu-icon">🎯</view>
+          <text class="menu-text">每日目标</text>
+        </view>
+        <view class="menu-right">
+          <text class="menu-value">{{settings.dailyGoal}}个单词</text>
+          <text class="arrow">></text>
+        </view>
+      </view>
+
+      <view class="menu-item" bindtap="handleSetReminder">
+        <view class="menu-left">
+          <view class="menu-icon">⏰</view>
+          <text class="menu-text">学习提醒</text>
+        </view>
+        <view class="menu-right">
+          <text class="menu-value">{{settings.reminderTime}}</text>
+          <text class="arrow">></text>
+        </view>
+      </view>
+
+      <view class="menu-item" bindtap="handleTogglePronunciation">
+        <view class="menu-left">
+          <view class="menu-icon">🔊</view>
+          <text class="menu-text">发音设置</text>
+        </view>
+        <view class="menu-right">
+          <text class="menu-value">{{settings.pronunciation === 'us' ? '美式发音' : '英式发音'}}</text>
+          <text class="arrow">></text>
+        </view>
+      </view>
+
+      <view class="menu-item">
+        <view class="menu-left">
+          <view class="menu-icon">🎵</view>
+          <text class="menu-text">自动播放</text>
+        </view>
+        <switch class="menu-switch" color="#4CAF50" checked="{{settings.autoPlay}}" bindchange="handleToggleAutoPlay"/>
+      </view>
+    </view>
+
+    <view class="menu-group">
+      <view class="menu-title">其他</view>
+      <view class="menu-item" bindtap="handleAboutUs">
+        <view class="menu-left">
+          <view class="menu-icon">ℹ️</view>
+          <text class="menu-text">关于我们</text>
+        </view>
+        <text class="arrow">></text>
+      </view>
+    </view>
+  </view>
+
+  <!-- 退出登录按钮 -->
+  <view class="logout-area" wx:if="{{isLoggedIn}}">
+    <button class="logout-btn" bindtap="handleLogout">退出登录</button>
+  </view>
+</view> 
